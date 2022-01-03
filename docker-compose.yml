@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+    web:
+        container_name: "django_app"
+        build: .
+        volumes:
+            - ./auth_demo:/usr/src/app
+        ports:
+            - "8000:8000"
