@@ -5,3 +5,19 @@ body {
 #site-nav {
   background-color: #523e78;
 }
+
+#login-inner-block {
+  background-color: #f0f8ff;
+  padding: 10px 20px;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+#login-outer-block {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
