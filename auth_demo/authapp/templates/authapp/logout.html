@@ -1,0 +1,6 @@
+{% extends 'authapp/index.html' %} {% block content %}
+<h1>You have been logged out!</h1>
+<small>
+  <a href="{% url 'authapp-login' %}">Login again</a>
+</small>
+{% endblock content %}
