@@ -21,3 +21,8 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+.form-control.is-invalid,
+.form-control.is-valid {
+  padding-right: 0.75rem;
+}

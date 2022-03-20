@@ -1,6 +1,8 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.urls import reverse
 
 
 def auth_login(request):
@@ -8,7 +10,17 @@ def auth_login(request):
         return redirect('authapp-profile')
     if request.method == 'POST':
         username = request.POST['username']
-        return render(request, 'authapp/passwordlogin.html', {'username': username})
+        if User.objects.filter(username=username).exists():
+            payload = {
+                'username': username,
+            }
+            return render(request, 'authapp/passwordlogin.html', payload)
+        else:
+            payload = {
+                'username_validity': 'is-invalid',
+                'incorrect_username': username,
+            }
+            return render(request, 'authapp/login.html', payload)
     else:
         return render(request, 'authapp/login.html')
 
@@ -23,6 +35,12 @@ def standard_login(request):
         if user is not None:
             login(request, user)
             return redirect('authapp-profile')
+        else:
+            payload = {
+                'username': username,
+                'password_validity': 'is-invalid',
+            }
+            return render(request, 'authapp/passwordlogin.html', payload)
     else:
         return redirect('authapp-login')
 

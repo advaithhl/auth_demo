@@ -2,10 +2,13 @@
 {% block content%}
 <div id="login-outer-block">
   <div id="login-inner-block">
-    <form method="POST" action="{% url 'authapp-login' %}">
+    <form class="needs-validation" method="POST" action="{% url 'authapp-login' %}">
       {% csrf_token %}
       <div class="form-group">
-        <input type="text" class="form-control" id="usernameInput" name="username" aria-describedby="usernameHelp" placeholder="Username" autofocus>
+        <input type="text" class="form-control {{ username_validity }}" value="{{ incorrect_username }}" id="usernameInput" name="username" aria-describedby="usernameHelp" placeholder="Username" autofocus required>
+        <div class="invalid-feedback">
+          Please enter correct username.
+        </div>
       </div>
       <div class="d-grid col-8 mx-auto">
         <button type="submit" class="btn btn-primary mt-4">Login</button>
